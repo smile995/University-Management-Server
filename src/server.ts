@@ -1,6 +1,7 @@
 import app from "./app";
-import config from "./config";
+
 import mongoose from "mongoose";
+import config from "./app/config";
 
 // const mongoose = require('mongoose');
 

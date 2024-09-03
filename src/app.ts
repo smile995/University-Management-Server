@@ -1,9 +1,12 @@
 import { Request, Response } from "express"
+import cors from "cors"
 
 const express = require('express')
 const app = express()
-const port = 3000
-
+// perser
+app.use(cors());
+app.use(express.json())
+// const route=app.router()
 app.get('/', (req:Request, res:Response) => {
   res.send('Hello World!')
 })
