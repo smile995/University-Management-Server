@@ -42,7 +42,6 @@ const guardianSchema = new Schema<Guardian>({
   },
   motherOccupation: {
     type: String,
-    required: true,
     trim:true
   },
   motherContactNo: {
@@ -60,7 +59,6 @@ const localGuradianSchema = new Schema<LocalGuardian>({
   },
   occupation: {
     type: String,
-    required: [true,"Occupation is Required"],
     trim:true
   },
   contactNo: {
@@ -90,17 +88,17 @@ const studentSchema = new Schema<Student>({
     required:true,
     trim:true
   },
-  dateOfBirth: { type: String, required:true, trim:true },
+  dateOfBirth: { type: String, trim:true },
   email: { type: String, required: true, unique:true, trim:true },
   contactNo: { type: String, required: true ,unique:true , trim:true},
   emergencyContactNo: { type: String, required: true, trim:true },
-  bloogGroup: {
+  bloodGroup: {
     type:String,
     enum:['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'],
     trim:true
   },
   presentAddress: { type: String, required: true, trim:true },
-  permanentAddres: { type: String, required: true, trim:true },
+  permanentAddress: { type: String, required: true, trim:true },
   guardian: {
     type:guardianSchema,
     required:true,

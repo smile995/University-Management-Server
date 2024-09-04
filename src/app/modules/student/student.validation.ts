@@ -28,19 +28,17 @@ const studentValidationSchema = z.object({
   gender: z.enum(['male', 'female', 'other'], {
     errorMap: () => ({ message: "Gender must be either 'male', 'female', or 'other'" }),
   }),
-  dateOfBirth: z.string().min(1, "Date of Birth is Required"),
+  dateOfBirth: z.string().min(1, "Date of Birth is Required").optional(),
   email: z.string().email("Invalid email address"),
   contactNo: z.string().min(1, "Contact Number is Required"),
   emergencyContactNo: z.string().min(1, "Emergency Contact Number is Required"),
-  bloogGroup: z.enum(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']).optional(),
+  bloodGroup: z.enum(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']).optional(),
   presentAddress: z.string().min(1, "Present Address is Required"),
-  permanentAddres: z.string().min(1, "Permanent Address is Required"),
+  permanentAddress: z.string().min(1, "Permanent Address is Required"),
   guardian: guardianValidationSchema,
   localGuardian: localGuardianValidationSchema,
   profileImg: z.string().optional(),
   isActive: z.enum(['active', 'blocked']).default('active'),
 });
 
-export const validateStudent = (data: unknown) => {
-  return studentValidationSchema.safeParse(data);
-};
+export default studentValidationSchema
