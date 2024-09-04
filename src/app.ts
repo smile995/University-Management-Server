@@ -13,7 +13,7 @@ app.use("/api/v1/students", StudentRoutes)
 
 
 app.get('/', (req:Request, res:Response) => {
-  res.send('Hello World!')
+  res.send('Welcome to University Management')
 })
 
 export default app 
