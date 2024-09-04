@@ -5,87 +5,119 @@ import { Guardian, LocalGuardian, Student, UserName } from './student.interface'
 const userNameSchema = new Schema<UserName>({
   firstName: {
     type: String,
-    required: true,
+    required: [true,"First Name is Required"],
+    trim:true
   },
   middleName: {
     type: String,
+    trim:true
   },
   lastName: {
     type: String,
-    required: true,
+    trim:true,
+    required: [true,"Last First Name is Required"],
   },
 });
 
 const guardianSchema = new Schema<Guardian>({
   fatherName: {
     type: String,
-    required: true,
+    trim:true,
+    required: [true,"Father Name is Required"],
   },
   fatherOccupation: {
     type: String,
     required: true,
+    trim:true
   },
   fatherContactNo: {
     type: String,
-    required: true,
+    required: [true,"Father Contact Number is Required"],
+    trim:true
   },
   motherName: {
     type: String,
-    required: true,
+    required: [true,"Mother Name is Required"],
+    trim:true
   },
   motherOccupation: {
     type: String,
     required: true,
+    trim:true
   },
   motherContactNo: {
     type: String,
-    required: true,
+    required:[true,"Mother Contact Number is Required"],
+    trim:true
   },
 });
 
 const localGuradianSchema = new Schema<LocalGuardian>({
   name: {
     type: String,
-    required: true,
+    required:[true,"Local Gourdian Name is Required"],
+    trim:true
   },
   occupation: {
     type: String,
-    required: true,
+    required: [true,"Occupation is Required"],
+    trim:true
   },
   contactNo: {
     type: String,
-    required: true,
+    required: [true,"Contact Number is Required"],
   },
   address: {
     type: String,
     required: true,
+    trim:true
   },
 });
 
 const studentSchema = new Schema<Student>({
   id: { type: String },
-  name: userNameSchema,
+  name: {
+    type:userNameSchema,
+    required:[true,"Student Name is Required"],
+    trim:true
+  },
   gender: {
     type:String,
-    enum:['male', 'female',"other"]
+    enum:{
+      values:['male', 'female',"other"],
+      message:"{VALUE} is not valid! Try to use male, female or other"
+    },
+    required:true,
+    trim:true
   },
-  dateOfBirth: { type: String },
-  email: { type: String, required: true },
-  contactNo: { type: String, required: true },
-  emergencyContactNo: { type: String, required: true },
+  dateOfBirth: { type: String, required:true, trim:true },
+  email: { type: String, required: true, unique:true, trim:true },
+  contactNo: { type: String, required: true ,unique:true , trim:true},
+  emergencyContactNo: { type: String, required: true, trim:true },
   bloogGroup: {
     type:String,
-    enum:['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']
+    enum:['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'],
+    trim:true
   },
-  presentAddress: { type: String, required: true },
-  permanentAddres: { type: String, required: true },
-  guardian: guardianSchema,
-  localGuardian: localGuradianSchema,
-  profileImg: { type: String },
+  presentAddress: { type: String, required: true, trim:true },
+  permanentAddres: { type: String, required: true, trim:true },
+  guardian: {
+    type:guardianSchema,
+    required:true,
+    trim:true
+  },
+  localGuardian: {
+    type:localGuradianSchema,
+    required:true,
+    trim:true
+  },
+  profileImg: { type: String, trim:true },
   isActive: {
     type:String,
     enum:['active', 'blocked'],
-    default:"active"
+    default:"active",
+    required:true,
+    trim:true
   },
 });
 
