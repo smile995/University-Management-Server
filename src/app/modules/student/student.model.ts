@@ -51,7 +51,7 @@ const guardianSchema = new Schema<Guardian>({
   },
 });
 
-const localGuradianSchema = new Schema<LocalGuardian>({
+const localGuardianSchema = new Schema<LocalGuardian>({
   name: {
     type: String,
     required:[true,"Local Gourdian Name is Required"],
@@ -105,7 +105,7 @@ const studentSchema = new Schema<Student>({
     trim:true
   },
   localGuardian: {
-    type:localGuradianSchema,
+    type:localGuardianSchema,
     required:true,
     trim:true
   },

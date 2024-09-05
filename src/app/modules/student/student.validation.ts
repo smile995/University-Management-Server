@@ -25,9 +25,7 @@ const localGuardianValidationSchema = z.object({
 const studentValidationSchema = z.object({
   id: z.string().optional(),
   name: userNameValidationSchema,
-  gender: z.enum(['male', 'female', 'other'], {
-    errorMap: () => ({ message: "Gender must be either 'male', 'female', or 'other'" }),
-  }),
+  gender: z.enum(['male', 'female', 'other'],{message:"Gender must be either 'male', 'female', or 'other'" }),
   dateOfBirth: z.string().min(1, "Date of Birth is Required").optional(),
   email: z.string().email("Invalid email address"),
   contactNo: z.string().min(1, "Contact Number is Required"),
