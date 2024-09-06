@@ -15,11 +15,16 @@ const createStudent = async (req: Request, res: Response) => {
       success: true,
       message: 'Student is created succesfully',
       data: result,
-    });
-  } catch (err) {
-    console.log(err);
-  }
+    }); 
+  } catch (error:any) {
+    res.status(400).json({
+      success: false,
+      message: error.message,
+     })
+     console.log(error);
+     
 };
+}
 
 const getAllStudents = async (req: Request, res: Response) => {
   try {

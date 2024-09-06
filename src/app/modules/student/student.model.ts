@@ -1,7 +1,9 @@
+
+
 import { Schema, model } from 'mongoose';
 import { Guardian, LocalGuardian, Student, UserName } from './student.interface';
-
-
+import bcrypt from "bcryptjs"
+import config from '../../config';
 const userNameSchema = new Schema<UserName>({
   firstName: {
     type: String,
@@ -74,10 +76,12 @@ const localGuardianSchema = new Schema<LocalGuardian>({
 
 const studentSchema = new Schema<Student>({
   id: { type: String },
+  password: { type: String ,required:true},
   name: {
     type:userNameSchema,
     required:[true,"Student Name is Required"],
-    trim:true
+    trim:true,
+    unique:true
   },
   gender: {
     type:String,
@@ -98,7 +102,7 @@ const studentSchema = new Schema<Student>({
     trim:true
   },
   presentAddress: { type: String, required: true, trim:true },
-  permanentAddress: { type: String, required: true, trim:true },
+  permanentAddress: { type: String, required:true,  trim:true },
   guardian: {
     type:guardianSchema,
     required:true,
@@ -118,5 +122,11 @@ const studentSchema = new Schema<Student>({
     trim:true
   },
 });
+
+studentSchema.pre("save", async function(next){
+  const user= this
+  user.password=await bcrypt.hash(user.password,Number(config.bcrypt_salt))
+})
+
 
 export const StudentModel = model<Student>('Student', studentSchema);
