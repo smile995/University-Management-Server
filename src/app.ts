@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json())
 
 // application routers
-app.use("/api/v1/students", StudentRoutes)
+app.use("/api/v1/students", StudentRoutes) //student root route
 
 
 app.get('/', (req:Request, res:Response) => {

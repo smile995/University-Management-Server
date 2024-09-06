@@ -121,11 +121,22 @@ const studentSchema = new Schema<Student>({
     required:true,
     trim:true
   },
+  isDeleted:{
+    type:Boolean,
+    default:false
+  }
 });
 
 studentSchema.pre("save", async function(next){
   const user= this
-  user.password=await bcrypt.hash(user.password,Number(config.bcrypt_salt))
+  user.password=await bcrypt.hash(user.password,Number(config.bcrypt_salt));
+  next()
+})
+
+studentSchema.post("save", async function(next){
+  const userData= this;
+  userData.password="";
+
 })
 
 

@@ -5,25 +5,25 @@ import studentValidationSchema from './student.validation';
 
 const createStudent = async (req: Request, res: Response) => {
 
-  
+
   try {
-    const { student} = req.body;
-    const validationData= studentValidationSchema.parse(student)
+    const { student } = req.body;
+    const validationData = studentValidationSchema.parse(student)
     const result = await StudentServices.createStudentIntoDB(validationData);
 
     res.status(200).json({
       success: true,
       message: 'Student is created succesfully',
       data: result,
-    }); 
-  } catch (error:any) {
+    });
+  } catch (error: any) {
     res.status(400).json({
       success: false,
       message: error.message,
-     })
-     console.log(error);
-     
-};
+    })
+    console.log(error);
+
+  };
 }
 
 const getAllStudents = async (req: Request, res: Response) => {
@@ -56,8 +56,21 @@ const getSingleStudent = async (req: Request, res: Response) => {
   }
 };
 
+const deleteAStudent = async (req: Request, res: Response) => {
+  const { studentId } = req.params;
+  const result = await StudentServices.deleteAStudent(studentId)
+  res.status(200).json({
+    success: true,
+    message: 'Student is deleted succesfully',
+    data: result,
+    
+  })
+
+}
+
 export const StudentControllers = {
   createStudent,
   getAllStudents,
   getSingleStudent,
+  deleteAStudent,
 };
