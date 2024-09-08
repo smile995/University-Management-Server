@@ -76,7 +76,13 @@ const localGuardianSchema = new Schema<LocalGuardian>({
 
 const studentSchema = new Schema<Student>({
   id: { type: String },
-  password: { type: String ,required:true},
+  user:{
+    type: Schema.Types.ObjectId,
+    required:[true,"User ID is Required"],
+    unique:true,
+    ref:"UserModel"
+  },
+ 
   name: {
     type:userNameSchema,
     required:[true,"Student Name is Required"],
@@ -114,30 +120,10 @@ const studentSchema = new Schema<Student>({
     trim:true
   },
   profileImg: { type: String, trim:true },
-  isActive: {
-    type:String,
-    enum:['active', 'blocked'],
-    default:"active",
-    required:true,
-    trim:true
-  },
-  isDeleted:{
-    type:Boolean,
-    default:false
-  }
+ 
 });
 
-studentSchema.pre("save", async function(next){
-  const user= this
-  user.password=await bcrypt.hash(user.password,Number(config.bcrypt_salt));
-  next()
-})
 
-studentSchema.post("save", async function(next){
-  const userData= this;
-  userData.password="";
-
-})
 
 
 export const StudentModel = model<Student>('Student', studentSchema);
