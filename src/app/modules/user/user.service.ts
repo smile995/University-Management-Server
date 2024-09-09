@@ -15,12 +15,10 @@ const createStudentIntoDB = async (password: string, student: Student) => {
   userData.role = 'student';
   userData.id = '2030001'
   const newUser = await UserModel.create(userData);
-  console.log(newUser);
-  
   // create a student
   if (Object.keys(student).length) {
-    student.id = newUser.id,
-      student.user = newUser._id
+    student.id = newUser.id, //replace student id by user id
+      student.user = newUser._id //replace user objectId id by user _id
   }
   // creating a new student
   const newStudent = await StudentModel.create(student)
