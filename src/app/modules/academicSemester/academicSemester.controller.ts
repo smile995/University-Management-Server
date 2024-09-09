@@ -40,9 +40,23 @@ const getAllAcademicSemester = catchAsync(async (req, res) => {
         data: result
     })
 })
+const UpdateAcademicSemester = catchAsync(async (req, res) => {
+    const { updatedId } = req.params;
+    const { name, code, year, startMonth, endMonth } = req.body
+    const result = await AcademicSemesterServices.updateAAcademicSemester(updatedId, {
+        name, code, year, startMonth, endMonth
+    })
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Academic Semester is updated successfully",
+        data: result
+    })
+})
 
 export const AcademicSemesterControllers = {
     createAcademicSemester,
     getSingleAcademicSemester,
-    getAllAcademicSemester
+    getAllAcademicSemester,
+    UpdateAcademicSemester
 };

@@ -1,9 +1,6 @@
 import { TAcademicSemester } from "./academicSemester.interface";
 import { AcademicSemesterModel } from "./academicSemester.model";
 
-
-
-
 // get all the student from database
 const createAcademicSemester = async (payload: TAcademicSemester) => {
     const name = payload.name
@@ -14,25 +11,28 @@ const createAcademicSemester = async (payload: TAcademicSemester) => {
     }
     else {
         throw new Error("Semester and Code not matching to each other")
-
     }
 };
 
 // get a specific student from DB  by unique ID
 const getSingleAcademicSemester = async (id: string) => {
-    const result = await AcademicSemesterModel.findOne({_id:id});
+    const result = await AcademicSemesterModel.findOne({ _id: id });
     return result;
 };
-
-// delete a specific student
 const getAllAcademicSemester = async () => {
     const result = await AcademicSemesterModel.find()
+    return result
+}
+
+const updateAAcademicSemester = async (id: string, projection: Object) => {
+    const result = await AcademicSemesterModel.findByIdAndUpdate(id,projection)
     return result
 }
 
 export const AcademicSemesterServices = {
     createAcademicSemester,
     getSingleAcademicSemester,
-    getAllAcademicSemester
+    getAllAcademicSemester,
+    updateAAcademicSemester
 
 };
