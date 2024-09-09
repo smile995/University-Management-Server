@@ -24,10 +24,10 @@ export type LocalGuardian = {
 // Main students interface below
 export type Student = {
   id?: string;
-  user:Types.ObjectId,
+  user:Types.ObjectId, //referencing the user objectId
   name: UserName;
   gender: 'male' | 'female'|"other";
-  dateOfBirth?: string;
+  dateOfBirth?: Date;
   email: string;
   contactNo: string;
   emergencyContactNo: string;
