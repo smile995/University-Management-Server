@@ -109,7 +109,6 @@ const studentSchema = new Schema<Student>({
   admissionSemester:{
     type:Schema.Types.ObjectId,
     required:true,
-    unique:true,
     ref:"AcademicSemesterModel"
   },
   presentAddress: { type: String, required: true, trim:true },
