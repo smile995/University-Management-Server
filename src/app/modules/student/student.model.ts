@@ -86,7 +86,7 @@ const studentSchema = new Schema<Student>({
     type:userNameSchema,
     required:[true,"Student Name is Required"],
     trim:true,
-    unique:true
+   
   },
   gender: {
     type:String,
@@ -99,12 +99,18 @@ const studentSchema = new Schema<Student>({
   },
   dateOfBirth: { type: Date, trim:true },
   email: { type: String, required: true, unique:true, trim:true },
-  contactNo: { type: String, required: true ,unique:true , trim:true},
+  contactNo: { type: String, required: true , trim:true},
   emergencyContactNo: { type: String, required: true, trim:true },
   bloodGroup: {
     type:String,
     enum:['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'],
     trim:true
+  },
+  admissionSemester:{
+    type:Schema.Types.ObjectId,
+    required:true,
+    unique:true,
+    ref:"AcademicSemesterModel"
   },
   presentAddress: { type: String, required: true, trim:true },
   permanentAddress: { type: String, required:true,  trim:true },
