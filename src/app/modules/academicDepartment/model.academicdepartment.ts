@@ -11,7 +11,7 @@ const academicDepartmentSchema = new Schema<TAcademicDepartment>({
     },
     academicFaculty: {
         type: Schema.Types.ObjectId,
-        required: true, ref: "AcademicFacultyModel",
+        required: true, ref: "AcademicFaculty",
     },
 
 }, { timestamps: true });

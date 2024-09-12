@@ -31,6 +31,7 @@ export type Student = {
   email: string;
   contactNo: string;
   admissionSemester:Types.ObjectId;
+  academicDepartment:Types.ObjectId;
   emergencyContactNo: string;
   bloodGroup?: 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-';
   presentAddress: string;

@@ -3,7 +3,6 @@ import { TAcademicSemester } from "./academicSemester.interface";
 import { Error } from "mongoose";
 
 const academicSemesterSchema = new Schema<TAcademicSemester>({
-
     name: {
         type: String,
         enum: {

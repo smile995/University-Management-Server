@@ -20,6 +20,7 @@ const createStudentIntoDB = async (password: string, student: Student) => {
   userData.role = 'student';
   if (ASemester) {
     userData.id = await generateStudentId(ASemester)
+    student.id = await generateStudentId(ASemester)
   }
 
   // student.admissionSemester=
