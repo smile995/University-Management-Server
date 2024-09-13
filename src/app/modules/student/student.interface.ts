@@ -36,6 +36,7 @@ export type Student = {
   bloodGroup?: 'A+' | 'A-' | 'B+' | 'B-' | 'AB+' | 'AB-' | 'O+' | 'O-';
   presentAddress: string;
   permanentAddress: string;
+  isDeleted:boolean;
   guardian: Guardian;
   localGuardian: LocalGuardian;
   profileImg?: string;

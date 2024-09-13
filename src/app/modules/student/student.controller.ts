@@ -5,8 +5,6 @@ import { sendResponse } from '../../utils/sendResponse';
 import { catchAsync } from '../../utils/catchAsync';
 
 
-
-
 const getAllStudents = catchAsync(async (req, res) => {
   const result = await StudentServices.getAllStudentsFromDB();
   sendResponse(res, {
@@ -38,9 +36,21 @@ const deleteAStudent: RequestHandler = catchAsync(async (req, res) => {
     data: result
   })
 })
+const UpdateAStudent: RequestHandler = catchAsync(async (req, res) => {
+  const student = req.body;
+  const { studentId } = req.params;
+  const result = await StudentServices.updateSingleStudentIntoDB(studentId, student)
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Student is deleted successfully",
+    data: result
+  })
+})
 
 export const StudentControllers = {
   getAllStudents,
   getSingleStudent,
   deleteAStudent,
+  UpdateAStudent
 };
