@@ -43,7 +43,7 @@ const UpdateAStudent: RequestHandler = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: "Student is deleted successfully",
+    message: "Student is updated successfully",
     data: result
   })
 })

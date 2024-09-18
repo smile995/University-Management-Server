@@ -79,6 +79,7 @@ const deleteAStudent = async (id: string) => {
   } catch (error) {
     await session.abortTransaction();
     await session.endSession();
+    
   }
 }
 
